@@ -28,20 +28,25 @@ if ( isNaN( parseFloat( argv.version ) ) ) {
     const packageJson: any = require( path.resolve( process.cwd(), 'package.json' ) );
     const packageJsonHugoVersion: string | null = objectPath.get( packageJson, argv.version, null );
     if ( !packageJsonHugoVersion ) {
-        console.error( 'Error!', `Cannot find a hugo version in the package.json file at "${ argv.version }"` );
+        console.error( `Cannot find a hugo version in the package.json file at "${ argv.version }"` );
         process.exit( 1 );
     }
     argv.version = packageJsonHugoVersion;
 }
 
 // Run
-console.log( `Install hugo v${ argv.version } into "${ argv.destination }"...` );
+console.log( `Download hugo binary (version "${ argv.version }") into "${ argv.destination }" ...` );
 installHugo( argv.version, argv.destination )
     .then( () => {
         console.log( 'Success!' );
         process.exit();
     } )
     .catch( ( error: any ) => {
-        console.error( 'Error!', error );
+        console.error( 'Error!' );
+        if ( error.toString().indexOf( '404' ) !== -1 ) {
+            console.error( `  -> It seems like the hugo version "${ argv.version }" does not exist.` );
+        }
+        console.log( '' );
+        console.dir( error );
         process.exit( 1 );
     } );
