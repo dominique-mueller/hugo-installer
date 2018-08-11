@@ -1,0 +1,23 @@
+version: 2
+
+groups:
+  developers:
+    approve_by_comment:
+      enabled: false # Disable!
+    required: 1
+    reset_on_push:
+      enabled: true
+    reset_on_reopened:
+      enabled: true
+    author_approval:
+      auto: true
+    users:
+    - dominique-mueller
+
+always_pending:
+  title_regex: '(WIP|wip)'
+  explanation: 'This PR is a work in progress.'
+
+always_rejected:
+  title_regex: '(BLOCKED|blocked|hold|HOLD)'
+  explanation: 'This PR is currently blocked.'
