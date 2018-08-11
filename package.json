@@ -32,9 +32,11 @@
 	},
 	"dependencies": {
 		"bin-wrapper": "4.0.x",
+		"del": "3.0.x",
 		"yargs": "12.0.x"
 	},
 	"devDependencies": {
+		"@types/del": "3.0.x",
 		"@types/node": "10.5.x",
 		"@types/yargs": "11.1.x",
 		"automatic-release": "1.1.x",

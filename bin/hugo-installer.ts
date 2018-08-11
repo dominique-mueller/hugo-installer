@@ -1,9 +1,12 @@
+#!/usr/bin/env node
+
 import * as yargs from 'yargs';
 
 import { installHugo } from '../index';
 
 // Read CLI parameters
-const cliParameters: yargs.Argv = yargs
+const argv: any = yargs
+    .version( false ) // Disable default version flag (we're using our own in the next line)
     .option( 'version', {
         describe: 'Hugo version to install',
         type: 'string',
@@ -12,13 +15,14 @@ const cliParameters: yargs.Argv = yargs
     .option( 'destination', {
         describe: 'Destination to download the Hugo binary into',
         type: 'string',
-        default: 'bin'
+        default: 'bin/hugo'
     } )
-    .strict();
+    .strict()
+    .argv;
 
 // Run
-console.log( `Install hugo v${ cliParameters.argv.version } into "${ cliParameters.argv.destination }"...` );
-installHugo( cliParameters.argv.version, cliParameters.argv.destination )
+console.log( `Install hugo v${ argv.version } into "${ argv.destination }"...` );
+installHugo( argv.version, argv.destination )
     .then( () => {
         console.log( 'Success!' );
     } )
