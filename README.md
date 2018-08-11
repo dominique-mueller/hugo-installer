@@ -16,8 +16,8 @@
 ## What it does
 
 **[Hugo](https://gohugo.io/)** is one of the most popular static site generators. Now, when it comes to web development, we usually select
-**[npm](https://www.npmjs.com/)** as our dependency management solution. **Hugo**, however, is a tool written in [Go](https://golang.org/)
-- meaning that it's not integrated with the npm module ecosystem - but instead delivered as a binary.
+**[npm](https://www.npmjs.com/)** as our dependency management solution. **Hugo**, however, is a tool written in [Go](https://golang.org/).
+As a consequence, Hugo is not integrated into the npm module ecosystem - but instead delivered as a binary.
 
 The **Hugo Installer** is here to help! It's a small node script which can be used to fetch a specific Hugo binary, for instance using the
 `postinstall` hook within a `package.json` file.
@@ -40,7 +40,7 @@ npm install hugo-installer --save-dev
 
 ## How to use
 
-We recommended to use the **hugo-installer**  in the `postinstall` hook within the project's `package.json` file.
+We recommended to use the **hugo-installer** within the `postinstall` hook of a project's `package.json` file.
 
 <br>
 
@@ -74,7 +74,7 @@ allows for the hugo version to be configured someplace else, e.g. in a `otherDep
 
 ### Configure binary path (optional)
 
-The optional `--destination` CLI parameter can be used to define into which folder the Hugo binary will be placed within. For example:
+The `--destination` CLI parameter can be used to define the folder into which the Hugo binary will be placed. For example:
 
 ``` json
 {
@@ -84,7 +84,7 @@ The optional `--destination` CLI parameter can be used to define into which fold
 }
 ```
 
-> The default destination path is `bin/hugo`.
+> This parameter is optional, the default destination path is `bin/hugo`.
 
 <br><br><br>
 
