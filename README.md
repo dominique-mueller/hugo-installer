@@ -88,6 +88,34 @@ The `--destination` CLI parameter can be used to define the folder into which th
 
 <br><br><br>
 
+## Using the Hugo binary
+
+Once fetched, the hugo binary can be used directly from your favourite command line. For example:
+
+``` bash
+bin/hugo/hugo.exe --config=hugo.config.json
+```
+
+Alternatively, one might also want to integrate Hugo in a NodeJS build script, or a NodeJS-based build tool such as
+**[Gulp](https://gulpjs.com/)**. You can execute the Hugo binary using the `spawn` command; for example:
+
+``` javascript
+const path = require( 'path' );
+const spawn = require( 'child_process' ).spawn;
+
+// Use Hugo
+spawn( path.resolve( process.cwd(), 'bin', 'hugo', 'hugo' ), [
+  `--config=hugo.config.json`
+], {
+  stdio: 'inherit'
+} )
+  .on( 'close', () => {
+    // Callback
+  } );
+```
+
+<br><br><br>
+
 ## Creator
 
 **Dominique Müller**
