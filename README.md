@@ -74,7 +74,8 @@ allows for the hugo version to be configured someplace else, e.g. in a `otherDep
 
 ### Configure binary path (optional)
 
-The `--destination` CLI parameter can be used to define the folder into which the Hugo binary will be placed. For example:
+The `--destination` CLI parameter can be used to define the folder into which the Hugo binary will be placed. This parameter is optional,
+the default destination path is `bin/hugo`. For example:
 
 ``` json
 {
@@ -84,7 +85,7 @@ The `--destination` CLI parameter can be used to define the folder into which th
 }
 ```
 
-> This parameter is optional, the default destination path is `bin/hugo`.
+> Don't forget to add the destination path to your `.gitignore` file!
 
 <br><br><br>
 
