@@ -74,7 +74,8 @@ allows for the hugo version to be configured someplace else, e.g. in a `otherDep
 
 ### Configure binary path (optional)
 
-The `--destination` CLI parameter can be used to define the folder into which the Hugo binary will be placed. For example:
+The `--destination` CLI parameter can be used to define the folder into which the Hugo binary will be placed. This parameter is optional,
+the default destination path is `bin/hugo`. For example:
 
 ``` json
 {
@@ -84,7 +85,35 @@ The `--destination` CLI parameter can be used to define the folder into which th
 }
 ```
 
-> This parameter is optional, the default destination path is `bin/hugo`.
+> Don't forget to add the destination path to your `.gitignore` file!
+
+<br><br><br>
+
+## Using the Hugo binary
+
+Once fetched, the hugo binary can be used directly from your favourite command line. For example:
+
+``` bash
+bin/hugo/hugo.exe --config=hugo.config.json
+```
+
+Alternatively, one might also want to integrate Hugo in a NodeJS build script, or a NodeJS-based build tool such as
+**[Gulp](https://gulpjs.com/)**. You can execute the Hugo binary using the `spawn` command; for example:
+
+``` javascript
+const path = require( 'path' );
+const spawn = require( 'child_process' ).spawn;
+
+// Use Hugo
+spawn( path.resolve( process.cwd(), 'bin', 'hugo', 'hugo' ), [
+  `--config=hugo.config.json`
+], {
+  stdio: 'inherit'
+} )
+  .on( 'close', () => {
+    // Callback
+  } );
+```
 
 <br><br><br>
 
