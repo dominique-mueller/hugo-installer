@@ -31,7 +31,7 @@
 		"release": "automatic-release && copyfiles package.json CHANGELOG.md LICENSE README.md dist"
 	},
 	"dependencies": {
-		"bin-wrapper": "4.0.x",
+		"bin-wrapper": "4.1.x",
 		"del": "3.0.x",
 		"object-path": "0.11.x",
 		"yargs": "12.0.x"
