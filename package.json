@@ -42,7 +42,7 @@
 		"@types/yargs": "11.1.x",
 		"automatic-release": "1.1.x",
 		"copyfiles": "2.0.x",
-		"rimraf": "2.6.x",
+		"rimraf": "3.0.x",
 		"typescript": "3.0.x"
 	}
 }
