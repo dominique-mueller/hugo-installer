@@ -34,7 +34,7 @@
 		"bin-wrapper": "4.0.x",
 		"del": "3.0.x",
 		"object-path": "0.11.x",
-		"yargs": "12.0.x"
+		"yargs": "14.2.x"
 	},
 	"devDependencies": {
 		"@types/del": "3.0.x",
