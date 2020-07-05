@@ -34,12 +34,12 @@
 		"bin-wrapper": "4.0.x",
 		"del": "3.0.x",
 		"object-path": "0.11.x",
-		"yargs": "12.0.x"
+		"yargs": "15.4.x"
 	},
 	"devDependencies": {
 		"@types/del": "3.0.x",
 		"@types/node": "10.9.x",
-		"@types/yargs": "11.1.x",
+		"@types/yargs": "15.0.x",
 		"automatic-release": "1.1.x",
 		"copyfiles": "2.0.x",
 		"rimraf": "2.6.x",
