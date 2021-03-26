@@ -1,48 +1,47 @@
 {
-	"name": "hugo-installer",
-	"description": "Installs hugo into your repository.",
-	"version": "1.0.1",
-	"author": {
-		"name": "Dominique Müller",
-		"email": "dominique.m.mueller@gmail.com",
-		"url": "https://www.devdom.io/"
-	},
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/dominique-mueller/hugo-installer"
-	},
-	"homepage": "https://github.com/dominique-mueller/hugo-installer",
-	"bugs": {
-		"url": "https://github.com/dominique-mueller/hugo-installer/issues"
-	},
-	"keywords": [
-		"hugo",
-		"gohugo",
-		"install"
-	],
-	"main": "index.js",
-	"bin": {
-		"hugo-installer": "bin/hugo-installer.js"
-	},
-	"scripts": {
-		"build": "tsc -p tsconfig.json",
-		"clean": "rimraf -r dist/**",
-		"release": "automatic-release && copyfiles package.json CHANGELOG.md LICENSE README.md dist"
-	},
-	"dependencies": {
-		"bin-wrapper": "4.0.x",
-		"del": "3.0.x",
-		"object-path": "0.11.x",
-		"yargs": "12.0.x"
-	},
-	"devDependencies": {
-		"@types/del": "3.0.x",
-		"@types/node": "10.9.x",
-		"@types/yargs": "11.1.x",
-		"automatic-release": "1.1.x",
-		"copyfiles": "2.0.x",
-		"rimraf": "2.6.x",
-		"typescript": "3.0.x"
-	}
+  "name": "hugo-installer",
+  "description": "Installs hugo into your repository.",
+  "version": "1.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominique-mueller/hugo-installer"
+  },
+  "keywords": [
+    "hugo",
+    "gohugo",
+    "install"
+  ],
+  "main": "index.js",
+  "bin": {
+    "hugo-installer": "bin/hugo-installer.js"
+  },
+  "scripts": {
+    "build": "rimraf -r dist && tsc -p tsconfig.json && copyfiles package.json CHANGELOG.md LICENSE README.md dist",
+    "lint": "eslint index.ts bin/** --max-warnings 0",
+    "lint:fix": "eslint index.ts bin/** --max-warnings 0 --fix"
+  },
+  "dependencies": {
+    "bin-wrapper": "4.1.x",
+    "del": "6.0.x",
+    "object-path": "0.11.x",
+    "yargs": "16.2.x"
+  },
+  "devDependencies": {
+    "@types/del": "4.0.x",
+    "@types/node": "14.14.x",
+    "@types/object-path": "0.11.x",
+    "@types/yargs": "16.0.x",
+    "@typescript-eslint/eslint-plugin": "4.14.x",
+    "@typescript-eslint/parser": "4.14.x",
+    "copyfiles": "2.4.x",
+    "eslint-config-prettier": "7.2.x",
+    "eslint-plugin-import": "2.22.x",
+    "eslint-plugin-prettier": "3.3.x",
+    "eslint-plugin-simple-import-sort": "7.0.x",
+    "eslint": "7.19.x",
+    "prettier": "2.2.x",
+    "rimraf": "3.0.x",
+    "typescript": "4.1.x"
+  }
 }

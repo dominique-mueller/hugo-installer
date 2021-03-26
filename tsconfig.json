@@ -1,17 +1,13 @@
 {
-	"compilerOptions": {
-		"declaration": true,
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"outDir": "./dist",
-		"removeComments": true,
-		"target": "es2016",
-		"sourceMap": true
-	},
-	"include": [
-		"bin/*.ts"
-	],
-	"files": [
-		"index.ts"
-	]
+  "compilerOptions": {
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "removeComments": true,
+    "target": "es2017",
+    "sourceMap": true
+  },
+  "include": ["bin/*.ts"],
+  "files": ["index.ts"]
 }
