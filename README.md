@@ -28,6 +28,10 @@ You can get the **hugo-installer** via **npm** by adding it as a new _devDepende
 npm install hugo-installer --save-dev
 ```
 
+### Requirements
+
+- **hugo-installer** requires **NodeJS 10** (or higher) to be installed
+
 <br><br><br>
 
 ## How to use
