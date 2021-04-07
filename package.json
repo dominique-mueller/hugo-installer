@@ -23,15 +23,19 @@
     "lint:fix": "eslint index.ts bin/** --max-warnings 0 --fix"
   },
   "dependencies": {
-    "bin-wrapper": "4.1.x",
+    "decompress": "4.2.x",
     "del": "6.0.x",
+    "got": "11.8.x",
     "object-path": "0.11.x",
+    "semver": "7.3.x",
     "yargs": "16.2.x"
   },
   "devDependencies": {
     "@types/del": "4.0.x",
+    "@types/decompress": "4.2.x",
     "@types/node": "14.14.x",
     "@types/object-path": "0.11.x",
+    "@types/semver": "7.3.x",
     "@types/yargs": "16.0.x",
     "@typescript-eslint/eslint-plugin": "4.14.x",
     "@typescript-eslint/parser": "4.14.x",
@@ -41,7 +45,6 @@
     "eslint-plugin-prettier": "3.3.x",
     "eslint-plugin-simple-import-sort": "7.0.x",
     "eslint": "7.19.x",
-    "got": "11.8.x",
     "prettier": "2.2.x",
     "rimraf": "3.0.x",
     "ts-node": "9.1.x",

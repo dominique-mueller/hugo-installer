@@ -43,7 +43,7 @@ const main = async () => {
   const binaries = combinationsOsArch.map((combinationOsArch) => {
     return {
       ...combinationOsArch,
-      binaryFileNamePatternHistory: []
+      fileNamePatternHistory: []
         .concat(
           ...releases.map((release: any) => {
             // Get clean release version
@@ -98,7 +98,7 @@ const main = async () => {
 
   // Figure out checksum meta
   console.log('> Analyzing Hugo release checksums ...');
-  const checksums = []
+  const checksumFilePatternHistory = []
     .concat(
       ...releases.map((release: any) => {
         // Get clean release version
@@ -150,7 +150,7 @@ const main = async () => {
   console.log('> Writing hugo release meta to disk ...');
   const hugoReleaseMeta = {
     binaries,
-    checksums,
+    checksumFilePatternHistory,
   };
   await fs.writeFile(path.join(process.cwd(), 'generated', 'hugo-releases-meta.json'), JSON.stringify(hugoReleaseMeta, null, '  '));
 
