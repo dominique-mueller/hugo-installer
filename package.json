@@ -18,6 +18,7 @@
   },
   "scripts": {
     "build": "rimraf -r dist && tsc -p tsconfig.json && copyfiles package.json CHANGELOG.md LICENSE README.md dist",
+    "generate-hugo-releases-meta": "ts-node ./tools/generate-hugo-releases-meta.ts",
     "lint": "eslint index.ts bin/** --max-warnings 0",
     "lint:fix": "eslint index.ts bin/** --max-warnings 0 --fix"
   },
@@ -40,8 +41,10 @@
     "eslint-plugin-prettier": "3.3.x",
     "eslint-plugin-simple-import-sort": "7.0.x",
     "eslint": "7.19.x",
+    "got": "11.8.x",
     "prettier": "2.2.x",
     "rimraf": "3.0.x",
+    "ts-node": "9.1.x",
     "typescript": "4.1.x"
   }
 }

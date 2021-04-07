@@ -1,0 +1,74 @@
+[
+  {
+    "os": "win32",
+    "arch": "x64"
+  },
+  {
+    "os": "win32",
+    "arch": "x86"
+  },
+  {
+    "os": "darwin",
+    "arch": "x64"
+  },
+  {
+    "os": "darwin",
+    "arch": "x86"
+  },
+  {
+    "os": "darwin",
+    "arch": "arm"
+  },
+  {
+    "os": "darwin",
+    "arch": "arm64"
+  },
+  {
+    "os": "linux",
+    "arch": "x64"
+  },
+  {
+    "os": "linux",
+    "arch": "x86"
+  },
+  {
+    "os": "linux",
+    "arch": "arm"
+  },
+  {
+    "os": "linux",
+    "arch": "arm64"
+  },
+  {
+    "os": "freebsd",
+    "arch": "x64"
+  },
+  {
+    "os": "freebsd",
+    "arch": "x86"
+  },
+  {
+    "os": "freebsd",
+    "arch": "arm"
+  },
+  {
+    "os": "freebsd",
+    "arch": "arm64"
+  },
+  {
+    "os": "openbsd",
+    "arch": "x64"
+  },
+  {
+    "os": "openbsd",
+    "arch": "x86"
+  },
+  {
+    "os": "openbsd",
+    "arch": "arm"
+  },
+  {
+    "os": "freebsd",
+    "arch": "arm64"
+  }
+]
