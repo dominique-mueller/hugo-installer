@@ -20,7 +20,8 @@
     "build": "rimraf -r dist && tsc -p tsconfig.json && copyfiles package.json CHANGELOG.md LICENSE README.md dist",
     "generate-hugo-releases-meta": "ts-node ./tools/generate-hugo-releases-meta.ts",
     "lint": "eslint index.ts bin/** --max-warnings 0",
-    "lint:fix": "eslint index.ts bin/** --max-warnings 0 --fix"
+    "lint:fix": "eslint index.ts bin/** --max-warnings 0 --fix",
+    "test": "rimraf -r test-output && node dist/bin/hugo-installer --version 0.82.0 --destination test-output/hugo-0.82.0"
   },
   "dependencies": {
     "decompress": "4.2.x",
