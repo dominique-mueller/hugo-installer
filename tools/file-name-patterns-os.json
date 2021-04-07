@@ -1,7 +1,7 @@
 {
-  "win32": "(windows)",
-  "linux": "(linux)",
   "darwin": "(macos|osx|darwin)",
   "freebsd": "(freebsd)",
-  "openbsd": "(openbsd)"
+  "linux": "(linux)",
+  "openbsd": "(openbsd)",
+  "win32": "(windows)"
 }
