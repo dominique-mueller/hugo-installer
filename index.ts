@@ -1,5 +1,5 @@
 import * as BinWrapper from 'bin-wrapper';
-import * as del from 'del';
+import del from 'del';
 import * as path from 'path';
 
 /**
