@@ -17,6 +17,7 @@ export interface InstallHugoParams {
   downloadUrl: string;
   destination: string;
   extended: boolean;
+  force: boolean;
   os: string;
   skipChecksumCheck: boolean;
   skipHealthCheck: boolean;
@@ -35,9 +36,9 @@ const cleanupAndPrepareDestination = async ({ destination }: Pick<InstallHugoPar
 };
 
 /**
- * Fetch hugo binary
+ * Fetch binary
  */
-const fetchHugoBinary = async ({
+const fetchBinary = async ({
   arch,
   downloadUrl,
   extended,
@@ -158,9 +159,9 @@ const verifyBinaryChecksum = async (
 };
 
 /**
- * Write hugo binary to disk
+ * Write binary to disk
  */
-const writeHugoBinaryToDisk = async (binaryAsBuffer, { destination }: Pick<InstallHugoParams, 'destination'>): Promise<void> => {
+const writeBinaryToDisk = async (binaryAsBuffer, { destination }: Pick<InstallHugoParams, 'destination'>): Promise<void> => {
   console.log(`> Extracting binary to disk`);
 
   // Decompress and write package to disk
@@ -196,6 +197,59 @@ const verifyBinaryHealth = async ({ destination }: Pick<InstallHugoParams, 'dest
 };
 
 /**
+ * Generate and write version to disk
+ */
+const generateAndWriteVersionToDisk = async ({
+  arch,
+  destination,
+  extended,
+  os,
+  version,
+}: Pick<InstallHugoParams, 'arch' | 'destination' | 'extended' | 'os' | 'version'>): Promise<void> => {
+  const versionFileContent = {
+    arch,
+    extended,
+    os,
+    version,
+  };
+  await fs.promises.writeFile(path.join(destination, 'version.json'), JSON.stringify(versionFileContent, null, '  '));
+};
+
+/**
+ * Check for existing binary
+ */
+const checkForExistingBinary = async ({
+  arch,
+  destination,
+  extended,
+  os,
+  version,
+}: Pick<InstallHugoParams, 'arch' | 'destination' | 'extended' | 'os' | 'version'>): Promise<boolean> => {
+  console.log('> Checking for existing binary');
+
+  try {
+    // Try to read and parse version file
+    const versionFileContentRaw = await fs.promises.readFile(path.join(destination, 'version.json'), { encoding: 'utf-8' });
+    const versionFileContent = JSON.parse(versionFileContentRaw);
+
+    // Check if the existing binary is the one we need anyways
+    const doesBinaryAlreadyExist =
+      versionFileContent.arch === arch &&
+      versionFileContent.extended === extended &&
+      versionFileContent.os === os &&
+      versionFileContent.version === version;
+
+    if (doesBinaryAlreadyExist) {
+      console.log('  Binary already exists!');
+    }
+
+    return doesBinaryAlreadyExist;
+  } catch (error) {
+    return false;
+  }
+};
+
+/**
  * Install hugo binary
  */
 export async function installHugo({
@@ -203,39 +257,61 @@ export async function installHugo({
   downloadUrl,
   destination,
   extended,
+  force,
   os,
   skipChecksumCheck,
   skipHealthCheck,
   version,
 }: InstallHugoParams): Promise<void> {
+  // Start log
   console.log('');
-  console.log('Installing Hugo');
+  console.log('Hugo Installer');
   console.log('');
 
-  // TODO: Check version file on disk & --force-install param
+  // Check for existing binary
+  const doesBinaryAlreadyExist = force
+    ? false
+    : await checkForExistingBinary({
+        arch,
+        destination,
+        extended,
+        os,
+        version,
+      });
 
-  await cleanupAndPrepareDestination({ destination });
-  const { binaryAsBuffer, binaryFileName } = await fetchHugoBinary({ arch, downloadUrl, extended, os, version });
-  if (!skipChecksumCheck) {
-    await verifyBinaryChecksum(binaryAsBuffer, binaryFileName, { downloadUrl, extended, version });
+  // Cleanup and download binary
+  if (!doesBinaryAlreadyExist) {
+    await cleanupAndPrepareDestination({ destination });
+    const { binaryAsBuffer, binaryFileName } = await fetchBinary({ arch, downloadUrl, extended, os, version });
+    if (!skipChecksumCheck) {
+      await verifyBinaryChecksum(binaryAsBuffer, binaryFileName, { downloadUrl, extended, version });
+    }
+    await writeBinaryToDisk(binaryAsBuffer, { destination });
   }
-  await writeHugoBinaryToDisk(binaryAsBuffer, { destination });
 
-  // Check
+  // Run health check (even if it already existed)
   let versionOutput = null;
   if (!skipHealthCheck) {
     versionOutput = await verifyBinaryHealth({ destination });
   }
 
-  // TODO: Write version file to disk
+  // Write version info to disk
+  await generateAndWriteVersionToDisk({
+    arch,
+    destination,
+    extended,
+    os,
+    version,
+  });
 
+  // End log
   console.log('');
-  console.log(`Hugo has been downloaded into "${destination}".`);
+  console.log(`Hugo is now available in "${destination}".`);
   console.log('');
-  console.log(`- Version: ${version}`);
-  console.log(`- Extended version: ${extended ? 'Yes' : 'No'}`);
-  console.log(`- Operating system: ${os}`);
-  console.log(`- System architecture: ${arch}`);
+  console.log(`- Version       ${version}`);
+  console.log(`- Extended      ${extended ? 'Yes' : 'No'}`);
+  console.log(`- OS            ${os}`);
+  console.log(`- Architecture  ${arch}`);
   if (versionOutput) {
     console.log('');
     console.log(versionOutput);

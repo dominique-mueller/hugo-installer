@@ -31,6 +31,11 @@ const argv = yargs
     describe: 'Download Hugo extended version.',
     type: 'boolean',
   })
+  .option('force', {
+    default: false,
+    describe: 'Force clean install of Hugo, ignoring already installed / cached binaries',
+    type: 'boolean',
+  })
   .option('os', {
     choices: ['darwin', 'freebsd', 'linux', 'openbsd', 'win32'],
     default: os.platform(),
