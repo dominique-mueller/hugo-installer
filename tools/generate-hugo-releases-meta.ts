@@ -38,9 +38,9 @@ const main = async () => {
     releases.push(partialReleases);
   }
 
-  // Create hugo releases meta
+  // Figure out binary meta
   console.log('> Analyzing Hugo release binaries ...');
-  const hugoReleasesMeta = combinationsOsArch.map((combinationOsArch) => {
+  const binaries = combinationsOsArch.map((combinationOsArch) => {
     return {
       ...combinationOsArch,
       fileNamePatternHistory: []
@@ -51,43 +51,40 @@ const main = async () => {
             const version = release.tag_name.replace('v', '');
 
             // Get asset file name patterns
-            const fileNamePatterns: Array<string> = [
-              ...new Set<string>(
-                release.assets
-                  // We only care about the name
-                  .map((asset: any): string => {
-                    return asset.name;
-                  })
+            const fileNamePatterns: Array<string> = release.assets
+              // We only care about the name
+              .map((asset: any): string => {
+                return asset.name;
+              })
 
-                  // Find assets matching the given os-arch combination
-                  .filter((assetName: string): boolean => {
-                    return (
-                      assetName.match(new RegExp(osFileNamePatterns[combinationOsArch.os], 'gi')) !== null &&
-                      assetName.match(new RegExp(archFileNamePatterns[combinationOsArch.arch], 'gi')) !== null
-                    );
-                  })
+              // Find assets matching the given os-arch combination
+              .filter((assetName: string): boolean => {
+                return (
+                  assetName.match(new RegExp(osFileNamePatterns[combinationOsArch.os], 'gi')) !== null &&
+                  assetName.match(new RegExp(archFileNamePatterns[combinationOsArch.arch], 'gi')) !== null
+                );
+              })
 
-                  // Map from specific asset name to generic asset name with placeholders
-                  .map((assetName: string): string => {
-                    return assetName.replace(/(hugo|hugo_extended)/gi, '{{variant}}').replace(version, '{{version}}');
-                  })
+              // Map from specific asset name to generic asset name with placeholders
+              .map((assetName: string): string => {
+                return assetName.replace('hugo_extended', '{{variant}}').replace('hugo', '{{variant}}').replace(version, '{{version}}');
+              })
 
-                  // Some release binaries exist in multiple formats, so we ignore ".deb" files
-                  .filter((assetName: string): boolean => {
-                    return !assetName.endsWith('.deb');
-                  }),
-              ),
-            ];
+              // Some release binaries exist in multiple formats, so we ignore ".deb" files
+              .filter((assetName: string): boolean => {
+                return !assetName.endsWith('.deb');
+              });
+            const fileNamePatternsDeduplicated = [...new Set(fileNamePatterns)];
 
             // Return asset info
             return {
               version: version,
-              fileNamePattern: fileNamePatterns[0] || null, // "null" means no pattern was found, aka no binary exists
+              fileNamePattern: fileNamePatternsDeduplicated[0] || null, // "null" means no pattern was found, aka no binary exists
             };
           }),
         )
 
-        // Starting with the oldest release, figure out changes to file name patterns
+        // Starting with the oldest release, figure out changes to binary file name patterns
         .reverse()
         .reduce((allVersions, currentVersion) => {
           // If the file name pattern has changed or none exists yet, add it
@@ -99,9 +96,63 @@ const main = async () => {
     };
   });
 
+  // Figure out checksum meta
+  console.log('> Analyzing Hugo release checksums ...');
+  const checksumFilePatternHistory = []
+    .concat(
+      ...releases.map((release: any) => {
+        // Get clean release version
+        // Note: We use the "tag_name" instead of "name" cause "name" seems to be missing on a few older releases
+        const version = release.tag_name.replace('v', '');
+
+        // Get asset file name patterns
+        const fileNamePatterns: Array<string> = release.assets
+          // We only care about the name
+          .map((asset: any): string => {
+            return asset.name;
+          })
+
+          // Find assets matching the given os-arch combination
+          .filter((assetName: string): boolean => {
+            return assetName.match(/checksums/gi) !== null;
+          })
+
+          // Map from specific asset name to generic asset name with placeholders
+          .map((assetName: string): string => {
+            return assetName.replace('hugo_extended', '{{variant}}').replace('hugo', '{{variant}}').replace(version, '{{version}}');
+          });
+        const fileNamePatternsDeduplicated = [...new Set(fileNamePatterns)];
+
+        // Return asset info
+        return {
+          version: version,
+          fileNamePattern: fileNamePatternsDeduplicated[0] || null, // "null" means no pattern was found, aka no checksum exists
+          useSpecificVariant: fileNamePatterns.length > 1,
+        };
+      }),
+    )
+
+    // Starting with the oldest release, figure out changes to checksum file name patterns
+    .reverse()
+    .reduce((allVersions, currentVersion) => {
+      // If the file name pattern has changed or none exists yet, add it
+      if (
+        allVersions.length === 0 ||
+        allVersions[0].fileNamePattern !== currentVersion.fileNamePattern ||
+        allVersions[0].useSpecificVariant !== currentVersion.useSpecificVariant
+      ) {
+        allVersions.unshift(currentVersion);
+      }
+      return allVersions;
+    }, []);
+
   // Write results to disk
   console.log('> Writing hugo release meta to disk ...');
-  await fs.writeFile(path.join(process.cwd(), 'generated', 'hugo-releases-meta.json'), JSON.stringify(hugoReleasesMeta, null, '  '));
+  const hugoReleaseMeta = {
+    binaries,
+    checksumFilePatternHistory,
+  };
+  await fs.writeFile(path.join(process.cwd(), 'generated', 'hugo-releases-meta.json'), JSON.stringify(hugoReleaseMeta, null, '  '));
 
   // Done
   console.log('');

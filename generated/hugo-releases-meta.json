@@ -1,542 +1,571 @@
-[
-  {
-    "os": "win32",
-    "arch": "x64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_Windows-64bit.zip"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_Windows-64bit.zip"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_Windows-64bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_windows-64bit.zip"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_windows_amd64.zip"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-windows-amd64"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-windows-x64"
-      }
-    ]
-  },
-  {
-    "os": "win32",
-    "arch": "x86",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_Windows-32bit.zip"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_Windows-32bit.zip"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_Windows-32bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_windows-32bit.zip"
-      },
-      {
-        "version": "0.15",
-        "fileNamePattern": "{{variant}}_{{version}}_windows_386_32-bit-only.zip"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_windows_386.zip"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-windows-386"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-windows-386"
-      }
-    ]
-  },
-  {
-    "os": "darwin",
-    "arch": "x64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_macOS-64bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_macOS-64bit.tar.gz"
-      },
-      {
-        "version": "0.18",
-        "fileNamePattern": "{{variant}}_{{version}}_macOS-64bit.zip"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_MacOS-64bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_osx-64bit.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_darwin_amd64.zip"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-darwin-amd64"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-darwin-x64"
-      }
-    ]
-  },
-  {
-    "os": "darwin",
-    "arch": "x86",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.75.0",
-        "fileNamePattern": null
-      },
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_macOS-32bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_macOS-32bit.tar.gz"
-      },
-      {
-        "version": "0.18",
-        "fileNamePattern": "{{variant}}_{{version}}_macOS-32bit.zip"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_MacOS-32bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_osx-32bit.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_darwin_386.zip"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-darwin-386"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-darwin-386"
-      }
-    ]
-  },
-  {
-    "os": "darwin",
-    "arch": "arm",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.17",
-        "fileNamePattern": null
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_darwin-arm32.tgz"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "darwin",
-    "arch": "arm64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.81.0",
-        "fileNamePattern": "{{variant}}_{{version}}_macOS-ARM64.tar.gz"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "linux",
-    "arch": "x64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_Linux-64bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_Linux-64bit.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_Linux-64bit.tar.gz"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_linux-64bit.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_linux_amd64.tar.gz"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-linux-amd64"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-linux-x64"
-      }
-    ]
-  },
-  {
-    "os": "linux",
-    "arch": "x86",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_Linux-32bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_Linux-32bit.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_Linux-32bit.tar.gz"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_linux-32bit.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_linux_386.tar.gz"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-linux-386"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-linux-386"
-      }
-    ]
-  },
-  {
-    "os": "linux",
-    "arch": "arm",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_Linux-ARM.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_Linux-ARM.tar.gz"
-      },
-      {
-        "version": "0.18",
-        "fileNamePattern": "{{variant}}_{{version}}_Linux_ARM.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_linux_arm.tar.gz"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_linux-arm32.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_linux_arm.tar.gz"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-linux-arm"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "linux",
-    "arch": "arm64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_Linux-ARM64.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_Linux-ARM64.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": null
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_linux-arm64.tgz"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "freebsd",
-    "arch": "x64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-64bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_FreeBSD-64bit.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-64bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_freebsd-64bit.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_freebsd_amd64.zip"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-freebsd-amd64"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-freebsd-x64"
-      }
-    ]
-  },
-  {
-    "os": "freebsd",
-    "arch": "x86",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-32bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_FreeBSD-32bit.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-32bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_freebsd-32bit.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_freebsd_386.zip"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-freebsd-386"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": "{{variant}}-{{version}}-freebsd-386"
-      }
-    ]
-  },
-  {
-    "os": "freebsd",
-    "arch": "arm",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_FreeBSD-ARM.tar.gz"
-      },
-      {
-        "version": "0.18",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD_ARM.zip"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_freebsd_arm.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_freebsd-arm32.tgz"
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_freebsd_arm.zip"
-      },
-      {
-        "version": "0.8",
-        "fileNamePattern": "{{variant}}-freebsd-arm"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "freebsd",
-    "arch": "arm64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.81.0",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM64.tar.gz"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "openbsd",
-    "arch": "x64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-64bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_OpenBSD-64bit.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-64bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_openbsd-64bit.tgz"
-      },
-      {
-        "version": "0.15",
-        "fileNamePattern": "{{variant}}_{{version}}_openbsd_amd64.zip"
-      },
-      {
-        "version": "0.10",
-        "fileNamePattern": null
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_openbsd_amd64.zip"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "openbsd",
-    "arch": "x86",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.20.4",
-        "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-32bit.tar.gz"
-      },
-      {
-        "version": "0.20.3",
-        "fileNamePattern": "{{variant}}_v{{version}}_OpenBSD-32bit.tar.gz"
-      },
-      {
-        "version": "0.17",
-        "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-32bit.zip"
-      },
-      {
-        "version": "0.16",
-        "fileNamePattern": "{{variant}}_{{version}}_openbsd-32bit.tgz"
-      },
-      {
-        "version": "0.15",
-        "fileNamePattern": "{{variant}}_{{version}}_openbsd_386.zip"
-      },
-      {
-        "version": "0.10",
-        "fileNamePattern": null
-      },
-      {
-        "version": "0.9",
-        "fileNamePattern": "{{variant}}_{{version}}_openbsd_386.zip"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "openbsd",
-    "arch": "arm",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.48",
-        "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-ARM.tar.gz"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  },
-  {
-    "os": "freebsd",
-    "arch": "arm64",
-    "fileNamePatternHistory": [
-      {
-        "version": "0.81.0",
-        "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM64.tar.gz"
-      },
-      {
-        "version": "0.7",
-        "fileNamePattern": null
-      }
-    ]
-  }
-]
+{
+  "binaries": [
+    {
+      "os": "win32",
+      "arch": "x64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_Windows-64bit.zip"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_Windows-64bit.zip"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_Windows-64bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_windows-64bit.zip"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_windows_amd64.zip"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-windows-amd64"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-windows-x64"
+        }
+      ]
+    },
+    {
+      "os": "win32",
+      "arch": "x86",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_Windows-32bit.zip"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_Windows-32bit.zip"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_Windows-32bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_windows-32bit.zip"
+        },
+        {
+          "version": "0.15",
+          "fileNamePattern": "{{variant}}_{{version}}_windows_386_32-bit-only.zip"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_windows_386.zip"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-windows-386"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-windows-386"
+        }
+      ]
+    },
+    {
+      "os": "darwin",
+      "arch": "x64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-64bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_macOS-64bit.tar.gz"
+        },
+        {
+          "version": "0.18",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-64bit.zip"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_MacOS-64bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_osx-64bit.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_darwin_amd64.zip"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-darwin-amd64"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-darwin-x64"
+        }
+      ]
+    },
+    {
+      "os": "darwin",
+      "arch": "x86",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.75.0",
+          "fileNamePattern": null
+        },
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-32bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_macOS-32bit.tar.gz"
+        },
+        {
+          "version": "0.18",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-32bit.zip"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_MacOS-32bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_osx-32bit.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_darwin_386.zip"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-darwin-386"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-darwin-386"
+        }
+      ]
+    },
+    {
+      "os": "darwin",
+      "arch": "arm",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.17",
+          "fileNamePattern": null
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_darwin-arm32.tgz"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "darwin",
+      "arch": "arm64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.81.0",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-ARM64.tar.gz"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "linux",
+      "arch": "x64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_Linux-64bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_Linux-64bit.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_Linux-64bit.tar.gz"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_linux-64bit.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_linux_amd64.tar.gz"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-linux-amd64"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-linux-x64"
+        }
+      ]
+    },
+    {
+      "os": "linux",
+      "arch": "x86",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_Linux-32bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_Linux-32bit.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_Linux-32bit.tar.gz"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_linux-32bit.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_linux_386.tar.gz"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-linux-386"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-linux-386"
+        }
+      ]
+    },
+    {
+      "os": "linux",
+      "arch": "arm",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_Linux-ARM.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_Linux-ARM.tar.gz"
+        },
+        {
+          "version": "0.18",
+          "fileNamePattern": "{{variant}}_{{version}}_Linux_ARM.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_linux_arm.tar.gz"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_linux-arm32.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_linux_arm.tar.gz"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-linux-arm"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "linux",
+      "arch": "arm64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_Linux-ARM64.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_Linux-ARM64.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": null
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_linux-arm64.tgz"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "freebsd",
+      "arch": "x64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-64bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_FreeBSD-64bit.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-64bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd-64bit.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd_amd64.zip"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-freebsd-amd64"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-freebsd-x64"
+        }
+      ]
+    },
+    {
+      "os": "freebsd",
+      "arch": "x86",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-32bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_FreeBSD-32bit.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-32bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd-32bit.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd_386.zip"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-freebsd-386"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": "{{variant}}-{{version}}-freebsd-386"
+        }
+      ]
+    },
+    {
+      "os": "freebsd",
+      "arch": "arm",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_FreeBSD-ARM.tar.gz"
+        },
+        {
+          "version": "0.18",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD_ARM.zip"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd_arm.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd-arm32.tgz"
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd_arm.zip"
+        },
+        {
+          "version": "0.8",
+          "fileNamePattern": "{{variant}}-freebsd-arm"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "freebsd",
+      "arch": "arm64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.81.0",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM64.tar.gz"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "openbsd",
+      "arch": "x64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-64bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_OpenBSD-64bit.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-64bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_openbsd-64bit.tgz"
+        },
+        {
+          "version": "0.15",
+          "fileNamePattern": "{{variant}}_{{version}}_openbsd_amd64.zip"
+        },
+        {
+          "version": "0.10",
+          "fileNamePattern": null
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_openbsd_amd64.zip"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "openbsd",
+      "arch": "x86",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.20.4",
+          "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-32bit.tar.gz"
+        },
+        {
+          "version": "0.20.3",
+          "fileNamePattern": "{{variant}}_v{{version}}_OpenBSD-32bit.tar.gz"
+        },
+        {
+          "version": "0.17",
+          "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-32bit.zip"
+        },
+        {
+          "version": "0.16",
+          "fileNamePattern": "{{variant}}_{{version}}_openbsd-32bit.tgz"
+        },
+        {
+          "version": "0.15",
+          "fileNamePattern": "{{variant}}_{{version}}_openbsd_386.zip"
+        },
+        {
+          "version": "0.10",
+          "fileNamePattern": null
+        },
+        {
+          "version": "0.9",
+          "fileNamePattern": "{{variant}}_{{version}}_openbsd_386.zip"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "openbsd",
+      "arch": "arm",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.48",
+          "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-ARM.tar.gz"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    },
+    {
+      "os": "freebsd",
+      "arch": "arm64",
+      "fileNamePatternHistory": [
+        {
+          "version": "0.81.0",
+          "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM64.tar.gz"
+        },
+        {
+          "version": "0.7",
+          "fileNamePattern": null
+        }
+      ]
+    }
+  ],
+  "checksumFilePatternHistory": [
+    {
+      "version": "0.56.0",
+      "fileNamePattern": "{{variant}}_{{version}}_checksums.txt",
+      "useSpecificVariant": false
+    },
+    {
+      "version": "0.43",
+      "fileNamePattern": "{{variant}}_{{version}}_checksums.txt",
+      "useSpecificVariant": true
+    },
+    {
+      "version": "0.27",
+      "fileNamePattern": "{{variant}}_{{version}}_checksums.txt",
+      "useSpecificVariant": false
+    },
+    {
+      "version": "0.20.3",
+      "fileNamePattern": "{{variant}}_checksums.txt",
+      "useSpecificVariant": false
+    },
+    {
+      "version": "0.7",
+      "fileNamePattern": null,
+      "useSpecificVariant": false
+    }
+  ]
+}
