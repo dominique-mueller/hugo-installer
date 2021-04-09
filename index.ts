@@ -24,6 +24,178 @@ export interface InstallHugoParams {
 }
 
 /**
+ * Clenaup and prepare destination
+ */
+const cleanupAndPrepareDestination = async ({ destination }: Pick<InstallHugoParams, 'destination'>): Promise<void> => {
+  // Delete destination folder with all its content
+  await del(path.join(destination, '**'));
+
+  // Prepare destination directory (does nothing if it already exists)
+  await fs.promises.mkdir(destination, { recursive: true });
+};
+
+/**
+ * Fetch hugo binary
+ */
+const fetchHugoBinary = async ({
+  arch,
+  downloadUrl,
+  extended,
+  os,
+  version,
+}: Pick<InstallHugoParams, 'arch' | 'downloadUrl' | 'extended' | 'os' | 'version'>): Promise<{
+  binaryAsBuffer: Buffer;
+  binaryFileName: string;
+}> => {
+  // Find hugo binary release meta for the given os-arch combination
+  const binaryMeta =
+    hugoReleasesMeta.binaries.find((binary): boolean => {
+      return binary.arch === arch && binary.os === os;
+    }) || null;
+  if (binaryMeta === null) {
+    throw new Error(
+      `A hugo release for os="${os}" and arch="${arch}" is not known to "hugo-installer". If you think this is a bug, feel free to open a GitHub issue here: https://github.com/dominique-mueller/hugo-installer/issues/new.`,
+    );
+  }
+
+  // Find binary file pattern for the given version
+  const binaryFileNamePattern = binaryMeta.fileNamePatternHistory.reverse().reduce((fileNamePattern, fileNamePatternHistoryItem) => {
+    return semver.gte(semver.coerce(version), semver.coerce(fileNamePatternHistoryItem.version))
+      ? fileNamePatternHistoryItem
+      : fileNamePattern;
+  }, null);
+  if (binaryFileNamePattern === null || binaryFileNamePattern.fileNamePattern === null) {
+    throw new Error(
+      `A Hugo binary file for version="${version}"${
+        extended ? ' (extended)' : ''
+      }, os="${os}" and arch="${arch}" is not known to "hugo-installer". If you think this is a bug, feel free to open a GitHub issue here: https://github.com/dominique-mueller/hugo-installer/issues/new.`,
+    );
+  }
+
+  // Contruct binary file name and URL
+  const binaryFileName = binaryFileNamePattern.fileNamePattern
+    .replace('{{variant}}', extended ? 'hugo_extended' : 'hugo')
+    .replace('{{version}}', version);
+  const binaryUrl = new URL(`v${version}/${binaryFileName}`, downloadUrl).toString();
+
+  // Download binary
+  console.log(`> Downloading binary from "${binaryUrl}"`);
+  let binaryAsBuffer: Buffer;
+  try {
+    const binaryResponse = await got(binaryUrl);
+    binaryAsBuffer = binaryResponse.rawBody;
+  } catch (error) {
+    throw new Error(`An error occured while trying to download the binary from "${binaryUrl}". Details: ${error.message}`);
+  }
+
+  // Done
+  return {
+    binaryAsBuffer,
+    binaryFileName,
+  };
+};
+
+/**
+ * Verify binary checksum
+ */
+const verifyBinaryChecksum = async (
+  binaryAsBuffer: Buffer,
+  binaryFileName: string,
+  { downloadUrl, extended, version }: Pick<InstallHugoParams, 'downloadUrl' | 'extended' | 'version'>,
+): Promise<void> => {
+  // Find checksum file pattern
+  const checksumFileNamePattern = hugoReleasesMeta.checksumFilePatternHistory
+    .reverse()
+    .reduce((fileNamePattern, fileNamePatternHistoryItem) => {
+      return semver.gte(semver.coerce(version), semver.coerce(fileNamePatternHistoryItem.version))
+        ? fileNamePatternHistoryItem
+        : fileNamePattern;
+    }, null);
+  if (checksumFileNamePattern == null || checksumFileNamePattern.fileNamePattern === null) {
+    throw new Error(
+      `A Hugo checksum file for version="${version}"${
+        extended ? ' (extended)' : ''
+      } is not known to "hugo-installer". If you think this is a bug, feel free to open a GitHub issue here: https://github.com/dominique-mueller/hugo-installer/issues/new.`,
+    );
+  }
+
+  // Construct checksum file name and url
+  const checksumFileName = checksumFileNamePattern.fileNamePattern
+    .replace('{{variant}}', extended && checksumFileNamePattern.useSpecificVariant ? 'hugo_extended' : 'hugo')
+    .replace('{{version}}', version);
+  const checksumUrl = new URL(`v${version}/${checksumFileName}`, downloadUrl).toString();
+
+  console.log(`> Downloading checksum from "${checksumUrl}"`);
+
+  // Download checksum
+  let rawChecksums: string;
+  try {
+    const checksumResponse = await got(checksumUrl);
+    rawChecksums = checksumResponse.body;
+  } catch (error) {
+    throw new Error(`An error occured while trying to download the checksum. Details: ${error.message}`);
+  }
+
+  // Find expected checksum
+  const rawChecksumLine =
+    rawChecksums.split('\n').find((rawChecksumLine) => {
+      return rawChecksumLine.endsWith(binaryFileName);
+    }) || null;
+  if (rawChecksumLine === null) {
+    throw new Error(`An error occured while trying to find the checksum for version "${version}" the checksum.`);
+  }
+  const expectedChecksum = rawChecksumLine.split(' ')[0];
+
+  // Generate actual checksum from downloaded binary
+  const actualChecksum = crypto.createHash('sha256').update(binaryAsBuffer).digest('hex');
+
+  console.log(`> Verifying binary checksum`);
+
+  // Verify checksum
+  if (actualChecksum !== expectedChecksum) {
+    throw new Error(`The binary file could not be verified by its checksum. Expected: "${expectedChecksum}". Actual: "${actualChecksum}"`);
+  }
+};
+
+/**
+ * Write hugo binary to disk
+ */
+const writeHugoBinaryToDisk = async (binaryAsBuffer, { destination }: Pick<InstallHugoParams, 'destination'>): Promise<void> => {
+  console.log(`> Extracting binary to disk`);
+
+  // Decompress and write package to disk
+  const decompressedFiles = await decompress(binaryAsBuffer, destination);
+
+  // Apply file permissions
+  await Promise.all(
+    decompressedFiles.map((decompressedFile) => {
+      return fs.promises.chmod(path.join(destination, decompressedFile.path), 0o755);
+    }),
+  );
+};
+
+/**
+ * Verify binary health
+ */
+const verifyBinaryHealth = async ({ destination }: Pick<InstallHugoParams, 'destination'>): Promise<string> => {
+  console.log(`> Verifying binary health`);
+
+  return new Promise<string>((resolve, reject): void => {
+    let hugoVersionConsoleOutput = null;
+    const childProcess = spawn(path.join(destination, 'hugo'), ['version']);
+    childProcess.stdout.on('data', (data) => {
+      hugoVersionConsoleOutput = data.toString().replace(/\r?\n|\r/g, '');
+    });
+    childProcess.on('close', () => {
+      resolve(hugoVersionConsoleOutput);
+    });
+    childProcess.on('error', (error) => {
+      reject(`An error occured while verifiy the binary health. Details: ${error.message}`);
+    });
+  });
+};
+
+/**
  * Install hugo binary
  */
 export async function installHugo({
@@ -40,121 +212,22 @@ export async function installHugo({
   console.log('Installing Hugo');
   console.log('');
 
-  // Find hugo binary release meta
-  const binaryMeta = hugoReleasesMeta.binaries.find((binary) => {
-    return binary.arch === arch && binary.os === os;
-  });
-  if (binaryMeta === undefined) {
-    throw new Error(`A release for os="${os}" and arch="${arch}" either does not exist or cannot be found.`);
-  }
+  // TODO: Check version file on disk & --force-install param
 
-  // Find binary file pattern for the given version
-  const binaryFileNamePattern = binaryMeta.fileNamePatternHistory.reverse().reduce((fileNamePattern, fileNamePatternHistoryItem) => {
-    if (semver.gte(semver.coerce(version), semver.coerce(fileNamePatternHistoryItem.version))) {
-      return fileNamePatternHistoryItem;
-    }
-    return fileNamePattern;
-  }, null);
-  if (binaryFileNamePattern.fileNamePattern === null) {
-    throw new Error(
-      `A release binary file with version="${version}" for os="${os}" and arch="${arch}" either does not exist or cannot be found.`,
-    );
-  }
-
-  // Contruct binary URL
-  const binaryFileName = binaryFileNamePattern.fileNamePattern
-    .replace('{{variant}}', extended ? 'hugo_extended' : 'hugo')
-    .replace('{{version}}', version);
-  const binaryUrl = new URL(`v${version}/${binaryFileName}`, downloadUrl).toString();
-
-  // Clear destination folder upfront
-  await del(path.join(destination, '**'));
-
-  // Prepare destination directory (if necessary)
-  await fs.promises.mkdir(destination, { recursive: true });
-
-  // Download binary
-  console.log(`> Downloading binary from "${binaryUrl}"`);
-  let binaryFileBuffer;
-  try {
-    const binaryResponse = await got(binaryUrl);
-    binaryFileBuffer = binaryResponse.rawBody;
-  } catch (error) {
-    throw new Error(`An error occured while trying to download the binary. Details: ${error.message}`);
-  }
-
+  await cleanupAndPrepareDestination({ destination });
+  const { binaryAsBuffer, binaryFileName } = await fetchHugoBinary({ arch, downloadUrl, extended, os, version });
   if (!skipChecksumCheck) {
-    // Find checksum file pattern
-    const checksumFileNamePattern = hugoReleasesMeta.checksumFilePatternHistory
-      .reverse()
-      .reduce((fileNamePattern, fileNamePatternHistoryItem) => {
-        if (semver.gte(semver.coerce(version), semver.coerce(fileNamePatternHistoryItem.version))) {
-          return fileNamePatternHistoryItem;
-        }
-        return fileNamePattern;
-      }, null);
-    if (checksumFileNamePattern.fileNamePattern !== null) {
-      // Construct checksum URL
-      const checksumFileName = checksumFileNamePattern.fileNamePattern
-        .replace('{{variant}}', extended && checksumFileNamePattern.useSpecificVariant ? 'hugo_extended' : 'hugo')
-        .replace('{{version}}', version);
-      const checksumUrl = new URL(`v${version}/${checksumFileName}`, downloadUrl).toString();
-
-      // Download checksums
-      console.log(`> Downloading checksum from "${checksumUrl}"`);
-      let checksums;
-      try {
-        const checksumResponse = await got(checksumUrl);
-        checksums = checksumResponse.body;
-      } catch (error) {
-        throw new Error(`An error occured while trying to download the checksum. Details: ${error.message}`);
-      }
-
-      // Find checksum
-      const checksum = checksums.split('\n').find((checksum) => {
-        return checksum.endsWith(binaryFileName);
-      });
-      if (checksum === undefined) {
-        throw new Error('An error occured while trying to find the checksum.');
-      }
-      const expectedChecksum = checksum.split(' ')[0];
-
-      // Verify checksum
-      console.log(`> Verifying binary checksum`);
-      const actualChecksum = crypto.createHash('sha256').update(binaryFileBuffer).digest('hex');
-      if (actualChecksum !== expectedChecksum) {
-        throw new Error('The binary file could not be verified by its checksum.');
-      }
-    }
+    await verifyBinaryChecksum(binaryAsBuffer, binaryFileName, { downloadUrl, extended, version });
   }
-
-  // Extract to disk
-  console.log(`> Extracting binary to disk`);
-  const decompressedFiles = await decompress(binaryFileBuffer, destination);
-  await Promise.all(
-    decompressedFiles.map((decompressedFile) => {
-      return fs.promises.chmod(path.join(destination, decompressedFile.path), 0o755);
-    }),
-  );
+  await writeHugoBinaryToDisk(binaryAsBuffer, { destination });
 
   // Check
   let versionOutput = null;
   if (!skipHealthCheck) {
-    console.log(`> Verifying binary health`);
-    versionOutput = await new Promise<string>((resolve, reject) => {
-      let versionOutput = null;
-      const childProcess = spawn(path.join(destination, 'hugo'), ['version']);
-      childProcess.stdout.on('data', (data) => {
-        versionOutput = data.toString().replace(/\r?\n|\r/g, '');
-      });
-      childProcess.on('close', () => {
-        resolve(versionOutput);
-      });
-      childProcess.on('error', (error) => {
-        reject(`An error occured while verifiy Hugo binary health. Details: ${error.message}`);
-      });
-    });
+    versionOutput = await verifyBinaryHealth({ destination });
   }
+
+  // TODO: Write version file to disk
 
   console.log('');
   console.log(`Hugo has been downloaded into "${destination}".`);
