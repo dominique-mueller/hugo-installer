@@ -78,6 +78,7 @@ installHugo({
   downloadUrl: argv.downloadUrl,
   destination: argv.destination,
   extended: argv.extended,
+  force: argv.force,
   os: argv.os,
   skipChecksumCheck: argv.skipChecksumCheck,
   skipHealthCheck: argv.skipHealthCheck,
