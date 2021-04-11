@@ -23,17 +23,14 @@ export default [
       resolve(),
       commonjs(),
       typescript(),
-      json(),
+      json({
+        preferConst: true,
+      }),
       bundleSize(),
     ],
     output: [
       {
         file: 'dist/index.js',
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: 'dist/index.esm.js',
         format: 'es',
         sourcemap: true,
       },
@@ -65,7 +62,7 @@ export default [
     output: [
       {
         file: 'dist/bin/hugo-installer.js',
-        format: 'cjs',
+        format: 'es',
       },
     ],
   },
