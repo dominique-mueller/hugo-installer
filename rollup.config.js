@@ -10,6 +10,7 @@ import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
  * Rollup configuration
  */
 export default [
+  // "src"
   {
     input: 'index.ts',
     plugins: [
@@ -36,9 +37,11 @@ export default [
       },
     ],
   },
+
+  // "bin"
   {
     input: 'bin/hugo-installer.ts',
-    external: ['../index'],
+    external: ['../index.js'],
     plugins: [
       externals({
         builtins: true,

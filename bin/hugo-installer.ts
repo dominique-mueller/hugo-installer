@@ -3,12 +3,18 @@
 import objectPath from 'object-path';
 import * as os from 'os';
 import * as path from 'path';
-import * as yargs from 'yargs';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-import { installHugo } from '../index';
+// Note:
+// Native ESM in NodeJS requires a file extension to be present when doing relative imports, with an experimental flag as a workaround.
+// TypeScript, however, will not add any file extension (made sense so far), and won't do so in the future in order to avoid rewriting code.
+// Thus, we add the file extension on our own, and TypeScript seems to continue working just fine.
+// TODO: Create a fancy rollup plugin that does this?
+import { installHugo } from '../index.js';
 
 // Read CLI parameters
-const argv = yargs
+const argv = yargs(hideBin(process.argv))
   .version(false) // Disable default version flag (we're using our own in the next line)
   .option('arch', {
     choices: ['arm', 'arm64', 'x64', 'x86'],
