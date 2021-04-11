@@ -15,7 +15,6 @@
     "package",
     "dependency"
   ],
-  "type": "module",
   "exports": {
     ".": {
       "require": "./index.js",
