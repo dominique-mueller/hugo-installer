@@ -13,11 +13,16 @@
     "install"
   ],
   "main": "index.js",
+  "module": "index.esm.js",
+  "types": "index.d.ts",
   "bin": {
     "hugo-installer": "bin/hugo-installer.js"
   },
   "scripts": {
-    "build": "rimraf -r dist && tsc -p tsconfig.json && copyfiles package.json CHANGELOG.md LICENSE README.md dist",
+    "build": "npm run build:clean && npm run build:bundle && npm run build:assets",
+    "build:assets": "copyfiles package.json CHANGELOG.md LICENSE README.md dist",
+    "build:bundle": "rollup --config rollup.config.js",
+    "build:clean": "rimraf -r dist",
     "generate-hugo-releases-meta": "ts-node ./tools/generate-hugo-releases-meta.ts",
     "lint": "eslint index.ts bin/** --max-warnings 0",
     "lint:fix": "eslint index.ts bin/** --max-warnings 0 --fix",
@@ -32,6 +37,10 @@
     "yargs": "16.2.x"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "18.0.x",
+    "@rollup/plugin-json": "4.1.x",
+    "@rollup/plugin-node-resolve": "11.2.x",
+    "@rollup/plugin-typescript": "8.2.x",
     "@types/del": "4.0.x",
     "@types/decompress": "4.2.x",
     "@types/node": "14.14.x",
@@ -48,6 +57,11 @@
     "eslint": "7.19.x",
     "prettier": "2.2.x",
     "rimraf": "3.0.x",
+    "rollup-plugin-bundle-size": "1.0.x",
+    "rollup-plugin-node-externals": "2.2.x",
+    "rollup-plugin-preserve-shebangs": "0.2.x",
+    "rollup-plugin-typescript2": "0.30.x",
+    "rollup": "2.45.x",
     "ts-node": "9.1.x",
     "typescript": "4.1.x"
   }
