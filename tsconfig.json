@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "ES2015",
     "moduleResolution": "node",
     "outDir": "./dist",
     "removeComments": true,
@@ -10,6 +10,10 @@
     "target": "es2017",
     "sourceMap": true
   },
-  "include": ["bin/*.ts"],
-  "files": ["index.ts"]
+  "include": [
+    "index.ts",
+    "bin/**/*.ts",
+    "src/**/*.ts"
+  ],
+  "files": ["index.ts", "bin/hugo-installer.ts"]
 }
