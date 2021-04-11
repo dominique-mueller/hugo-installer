@@ -10,13 +10,23 @@
   "keywords": [
     "hugo",
     "gohugo",
-    "install"
+    "install",
+    "binary",
+    "package",
+    "dependency"
   ],
-  "main": "index.js",
-  "module": "index.esm.js",
-  "types": "index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.esm.js"
+    }
+  },
+  "main": "./index.js",
+  "module": "./index.esm.js",
+  "types": "./index.d.ts",
   "bin": {
-    "hugo-installer": "bin/hugo-installer.js"
+    "hugo-installer": "./bin/hugo-installer.js"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:bundle && npm run build:assets",
