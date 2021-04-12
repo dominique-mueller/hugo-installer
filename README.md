@@ -15,8 +15,14 @@
 thus not integrated into the npm module ecosystem. Instead, users are asked to install Hugo globally on their systems. Suboptimal, really.
 
 But don't you worry, **Hugo Installer** is here to help! It's a small Node.js script which you can use to fetch the correct Hugo binary for
-your system, e.g. via a `postinstall` hook within a `package.json` file. It also recognizes already downloaded binaries, and verifies both
-checksum and health of your binaries. Neat!
+your system, e.g. via a `postinstall` hook within a `package.json` file. Neat!
+
+Features include:
+
+- :computer: Compatible with all operating systems and system architectures (Windows, MacOS, Linux, ...)
+- :star: Supports all Hugo version, including extended versions
+- :heart: Verifies checksum and runs health checks
+- :eyes: Recognizes already downloaded binaries
 
 <br><br><br>
 
