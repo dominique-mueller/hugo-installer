@@ -19,9 +19,9 @@ your system, e.g. via a `postinstall` hook within a `package.json` file. Neat!
 
 Features include:
 
-- :computer: Compatible with all operating systems and system architectures (Windows, MacOS, Linux, ...)
-- :star: Supports all Hugo version, including extended versions
-- :heart: Verifies checksum and runs health checks
+- :computer: Compatible with all operating systems and system architectures (Windows, MacOS, Linux, ..., CI/CD)
+- :star: Supports all Hugo versions, including extended version
+- :heart: Verifies checksum & runs health check when installing
 - :eyes: Recognizes already downloaded binaries
 
 <br><br><br>
