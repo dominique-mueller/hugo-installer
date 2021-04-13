@@ -4,6 +4,14 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/hugo-installer
 
 <br>
 
+## [3.0.1](https://github.com/dominique-mueller/hugo-installer/releases/tag/3.0.1) (2021-04-13)
+
+### Bug Fixes
+
+- Fix version CLI parameter not working when pointing to package.json property ([#32](https://github.com/dominique-mueller/hugo-installer/pull/32))
+
+<br>
+
 ## [3.0.0](https://github.com/dominique-mueller/hugo-installer/releases/tag/3.0.0) (2021-04-13)
 
 ### Features
