@@ -4,9 +4,29 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/hugo-installer
 
 <br>
 
+## [3.0.0](https://github.com/dominique-mueller/hugo-installer/releases/tag/3.0.0) (2021-04-13)
+
+### Features
+
+- Support all Hugo versions ([#27](https://github.com/dominique-mueller/hugo-installer/pull/27), [#28](https://github.com/dominique-mueller/hugo-installer/pull/28))
+- Add binary checksum check, with flag to skip ([#28](https://github.com/dominique-mueller/hugo-installer/pull/28))
+- Add binary health check, with flag to skip ([#28](https://github.com/dominique-mueller/hugo-installer/pull/28))
+- Recognize exiting binaries, with flag to ignore ([#29](https://github.com/dominique-mueller/hugo-installer/pull/29))
+- Add additional CLI parameters for configuration, e.g. os, arch, download URL ([#28](https://github.com/dominique-mueller/hugo-installer/pull/28))
+
+### Documentation
+
+- Update documentation to include new features, list all CLI parameters ([#31](https://github.com/dominique-mueller/hugo-installer/pull/31))
+
+### BREAKING CHANGES
+
+- NodeJS 12 (or higher) is now required
+
+<br>
+
 ## [2.0.0](https://github.com/dominique-mueller/hugo-installer/releases/tag/2.0.0) (2021-03-26)
 
-### Feature
+### Features
 
 - Add support for hugo extended version ([#22](https://github.com/dominique-mueller/hugo-installer/pull/22))
 
@@ -20,7 +40,7 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/hugo-installer
 
 ### Documentation
 
-- Add section on how to use the hugo binary ([#6](https://github.com/dominique-mueller/hugo-installer/issues/6)) ([df1a009](https://github.com/dominique-mueller/hugo-installer/commit/df1a009))
+- Add section on how to use the hugo binary ([#6](https://github.com/dominique-mueller/hugo-installer/issues/6))
 
 <br>
 
