@@ -19,11 +19,11 @@ const argv = yargs(hideBin(process.argv))
   .option('arch', {
     choices: ['arm', 'arm64', 'x64', 'x86'],
     default: os.arch(),
-    describe: 'System architecture that the binary should run on. It is recommended to use auto-detect by not using this option.',
+    describe: 'System architecture that the binary will run on. It is recommended to use auto-detect by not using this option.',
   })
   .option('destination', {
     default: 'bin/hugo',
-    describe: 'Destination to download the Hugo binary into.',
+    describe: 'Path to the folder into which the binary will be put. Make sure to add this path to your "gitignore" file.',
     type: 'string',
   })
   .option('downloadUrl', {
@@ -34,12 +34,12 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('extended', {
     default: false,
-    describe: 'Download Hugo extended version.',
+    describe: 'Download the extended version of Hugo.',
     type: 'boolean',
   })
   .option('force', {
     default: false,
-    describe: 'Force clean install of Hugo, ignoring already installed / cached binaries',
+    describe: 'Force clean install of Hugo, ignoring already installed / cached binaries.',
     type: 'boolean',
   })
   .option('os', {
@@ -59,7 +59,7 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('version', {
     describe:
-      'Hugo version to install, or path to package.json value with the version. Make sure to use the exact version number defined in Hugo releases.',
+      'Hugo version to install, or path to package.json entry with the version. Make sure to use the exact version number as defined in the official Hugo GitHub releases.',
     type: 'string',
     required: true,
   })
