@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
+import * as fs from 'fs';
 import objectPath from 'object-path';
 import * as os from 'os';
 import * as path from 'path';
+import semver from 'semver';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
@@ -12,6 +14,7 @@ import { hideBin } from 'yargs/helpers';
 // Thus, we add the file extension on our own, and TypeScript seems to continue working just fine.
 // TODO: Create a fancy rollup plugin that does this?
 import { installHugo } from '../index.js';
+import { InstallHugoOptions } from '../src/install-hugo.interfaces.js';
 
 // Read CLI parameters
 const argv = yargs(hideBin(process.argv))
@@ -65,21 +68,50 @@ const argv = yargs(hideBin(process.argv))
   })
   .strict().argv;
 
-// If the version does not have the format of a version number, assume it's an object path
-if (isNaN(parseFloat(argv.version))) {
-  // Note: There is no other way in NodeJS to dynamically resolve and import the project's package.json file
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const packageJson: any = require(path.resolve(process.cwd(), 'package.json'));
-  const packageJsonHugoVersion: string | null = objectPath.get(packageJson, argv.version, null);
-  if (!packageJsonHugoVersion) {
-    console.error(`The version "${argv.version}" is either invalid or not part of the "package.json" file.`);
-    process.exit(1);
+/**
+ * Bin
+ */
+const bin = async (options: InstallHugoOptions): Promise<void> => {
+  // If the version does not have the format of a version number, assume it's an object path
+  if (semver.valid(argv.version) === null) {
+    // Read and parse package.json file
+    let packageJsonContent: any;
+    try {
+      const packageJsonRaw = await fs.promises.readFile(path.resolve(process.cwd(), 'package.json'), { encoding: 'utf-8' });
+      packageJsonContent = JSON.parse(packageJsonRaw);
+    } catch (error) {
+      console.error(`The version points to a property in the "package.json" file, but the file cannot be read. Details: ${error.message}`);
+      process.exit(1);
+    }
+
+    // Try to get the version from the package.json file
+    const packageJsonHugoVersion: string | null = objectPath.get(packageJsonContent, argv.version, null);
+    if (packageJsonHugoVersion === null) {
+      console.error(`The version points to a property in the "package.json" file, but the property does not exist.`);
+      process.exit(1);
+    }
+    if (semver.valid(packageJsonHugoVersion) === null) {
+      console.error('The version points to a property in the "package.json" file, but the version defined there is not valid.');
+      process.exit(1);
+    }
+
+    options.version = packageJsonHugoVersion;
   }
-  argv.version = packageJsonHugoVersion;
-}
+
+  // Run
+  installHugo(options)
+    .then(() => {
+      console.log('Success!');
+      process.exit();
+    })
+    .catch((error: any) => {
+      console.log(error);
+      process.exit(1);
+    });
+};
 
 // Run
-installHugo({
+bin({
   arch: argv.arch,
   downloadUrl: argv.downloadUrl,
   destination: argv.destination,
@@ -89,12 +121,4 @@ installHugo({
   skipChecksumCheck: argv.skipChecksumCheck,
   skipHealthCheck: argv.skipHealthCheck,
   version: argv.version,
-})
-  .then(() => {
-    console.log('Success!');
-    process.exit();
-  })
-  .catch((error: any) => {
-    console.log(error);
-    process.exit(1);
-  });
+});
