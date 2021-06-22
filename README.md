@@ -114,11 +114,33 @@ hugo-installer --help
 
 ## Using the Hugo binary
 
-Once fetched, the hugo binary can be used directly from your favourite command line or as part of an npm script. For example:
+Once fetched, the hugo binary can be used directly from your favourite command line, as part of an npm script, from within an Node.js script
+or in any way you desire.
+
+<br>
+
+### npm script
+
+Using Hugo from within an npm script is not as simple as it seems if you care about OS compatibility (which you should). On Windows systems
+in particular, it is not possible to execute binary files directly from within an npm script. I developed a tiny npm module named
+[`exec-bin`](https://github.com/dominique-mueller/exec-bin) which allows you to do exactly that simply by prepending its command.
+
+Add `exec-bin` to your `devDependencies`, hit `npm install` and run Hugo from within your npm script by prepending the `exec-bin` command.
+For instance:
+
+```bash
+exec-bin bin/hugo/hugo --config=hugo.config.json
+```
+
+If you only case about Linux-based systems, you can run the executable as expected without any additional tooling. For instance:
 
 ```bash
 bin/hugo/hugo --config=hugo.config.json
 ```
+
+<br>
+
+### Node.js
 
 One might also want to integrate Hugo in a NodeJS build script, or a NodeJS-based build tool such as **[Gulp](https://gulpjs.com/)**. You
 can execute the Hugo binary using the Node.JS `spawn` function. For example:
