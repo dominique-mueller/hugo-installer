@@ -7,6 +7,8 @@ export interface InstallHugoOptions {
   downloadUrl: string;
   extended: boolean;
   force: boolean;
+  httpProxy: string | null;
+  httpsProxy: string | null;
   os: string;
   skipChecksumCheck: boolean;
   skipHealthCheck: boolean;

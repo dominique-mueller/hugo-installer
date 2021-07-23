@@ -45,6 +45,18 @@ const argv = yargs(hideBin(process.argv))
     describe: 'Force clean install of Hugo, ignoring already installed / cached binaries.',
     type: 'boolean',
   })
+  .option('httpProxy', {
+    default: process.env.HTTP_PROXY || null,
+    describe:
+      'HTTP Proxy URL, used when downloading Hugo binaries. Useful when working behind corporate proxies. Can also be configured using the "HTTP_PROXY" environment variable, the CLI argument (if used) will take precedence.',
+    type: 'string',
+  })
+  .option('httpsProxy', {
+    default: process.env.HTTPS_PROXY || null,
+    describe:
+      'HTTPS Proxy URL, used when downloading Hugo binaries. Useful when working behind corporate proxies. Can also be configured using the "HTTPS_PROXY" environment variable, the CLI argument (if used) will take precedence.',
+    type: 'string',
+  })
   .option('os', {
     choices: ['darwin', 'freebsd', 'linux', 'openbsd', 'win32'],
     default: os.platform(),
@@ -113,10 +125,12 @@ const bin = async (options: InstallHugoOptions): Promise<void> => {
 // Run
 bin({
   arch: argv.arch,
-  downloadUrl: argv.downloadUrl,
   destination: argv.destination,
+  downloadUrl: argv.downloadUrl,
   extended: argv.extended,
   force: argv.force,
+  httpProxy: argv.httpProxy,
+  httpsProxy: argv.httpsProxy,
   os: argv.os,
   skipChecksumCheck: argv.skipChecksumCheck,
   skipHealthCheck: argv.skipHealthCheck,
