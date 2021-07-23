@@ -88,7 +88,7 @@ Hugo version to be configured someplace else, e.g. in a `otherDependencies` obje
 
 <br>
 
-### Full list of CLI parameters
+### CLI parameters
 
 The following lists all available CLI parameters and their respective default values. Only the `--version` CLI parameter is required.
 
@@ -99,6 +99,8 @@ The following lists all available CLI parameters and their respective default va
 | `--downloadUrl [url]`  | Source base URL from where the Hugo binary will be fetched. By default,<br>GitHub will be used. When using a custom URL, make sure to replicate<br>GitHub release asset URLs and append a trailing slash to the custom URL.<br><br>→ Default value: `https://github.com/gohugoio/hugo/releases/download/` |
 | `--extended`           | Download the extended version of Hugo.<br><br>→ Default value: `false`                                                                                                                                                                                                                                    |
 | `--force`              | Force clean install of Hugo, ignoring already installed / cached binaries.<br><br>→ Default value: `false`                                                                                                                                                                                                |
+| `--httpProxy [url]`    | HTTP Proxy URL, used when downloading Hugo binaries. Useful when working behind corporate proxies. Can also be configured using the `HTTP_PROXY` environment variable, the CLI argument (if used) will take precedence.                                                                                   |
+| `--httpsProxy [url]`   | HTTPS Proxy URL, used when downloading Hugo binaries. Useful when working behind corporate proxies. Can also be configured using the `HTTPS_PROXY` environment variable, the CLI argument (if used) will take precedence.                                                                                 |
 | `--os [os]`            | Operating system that the binary should run on. It is recommended to<br>use auto-detect by not using this option. <br><br>→ Default value: Auto-configured on runtime using `os.platform()`                                                                                                               |
 | `--skipChecksumCheck`  | Skip checksum checks for downloaded binaries. It is recommended to<br>leave this option enabled. <br><br>→ Default value: `true`                                                                                                                                                                          |
 | `--skipHealthCheck`    | Skip health checks for downloaded binaries. It is recommended to leave<br>this option enabled. <br><br>→ Default value: `true`                                                                                                                                                                            |
@@ -109,6 +111,17 @@ You can always take a look at all available CLI parameters using the `--help` CL
 ```bash
 hugo-installer --help
 ```
+
+<br>
+
+### Environment variables
+
+The following lists all environment variables that can be used, all of them being optional.
+
+| Environment variable | Description                                                                                                                                                                                                       |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `HTTP_PROXY`         | HTTP Proxy URL, used when downloading Hugo binaries. Useful when working behind corporate proxies. Can also be configured using the `--httpProxy [url]` CLI argument which (if used) will also take precedence.   |
+| `HTTPS_PROXY`        | HTTPS Proxy URL, used when downloading Hugo binaries. Useful when working behind corporate proxies. Can also be configured using the `--httpsProxy [url]` CLI argument which (if used) will also take precedence. |
 
 <br><br><br>
 

@@ -3,12 +3,40 @@ import * as crypto from 'crypto';
 import decompress from 'decompress';
 import del from 'del';
 import * as fs from 'fs';
-import got from 'got';
+import got, { OptionsOfTextResponseBody } from 'got';
+import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 import * as path from 'path';
 import semver from 'semver';
 
 import hugoReleasesMeta from './../generated/hugo-releases-meta.json';
 import { InstallHugoOptions } from './install-hugo.interfaces';
+
+/**
+ * Create fetch options
+ */
+const createFetchOptions = ({
+  httpProxy,
+  httpsProxy,
+}: Pick<InstallHugoOptions, 'httpProxy' | 'httpsProxy'>): OptionsOfTextResponseBody | undefined => {
+  return {
+    agent: {
+      ...(httpProxy === null
+        ? {}
+        : {
+            http: new HttpProxyAgent({
+              proxy: httpProxy,
+            }),
+          }),
+      ...(httpsProxy === null
+        ? {}
+        : {
+            https: new HttpsProxyAgent({
+              proxy: httpsProxy,
+            }),
+          }),
+    },
+  };
+};
 
 /**
  * Clenaup and prepare destination
@@ -28,9 +56,11 @@ const fetchBinary = async ({
   arch,
   downloadUrl,
   extended,
+  httpProxy,
+  httpsProxy,
   os,
   version,
-}: Pick<InstallHugoOptions, 'arch' | 'downloadUrl' | 'extended' | 'os' | 'version'>): Promise<{
+}: Pick<InstallHugoOptions, 'arch' | 'downloadUrl' | 'extended' | 'httpProxy' | 'httpsProxy' | 'os' | 'version'>): Promise<{
   binaryAsBuffer: Buffer;
   binaryFileName: string;
 }> => {
@@ -59,7 +89,7 @@ const fetchBinary = async ({
     );
   }
 
-  // Contruct binary file name and URL
+  // Construct binary file name and URL
   const binaryFileName = binaryFileNamePattern.fileNamePattern
     .replace('{{variant}}', extended ? 'hugo_extended' : 'hugo')
     .replace('{{version}}', version);
@@ -69,7 +99,7 @@ const fetchBinary = async ({
   console.log(`> Downloading binary from "${binaryUrl}"`);
   let binaryAsBuffer: Buffer;
   try {
-    const binaryResponse = await got(binaryUrl);
+    const binaryResponse = await got(binaryUrl, createFetchOptions({ httpProxy, httpsProxy }));
     binaryAsBuffer = binaryResponse.rawBody;
   } catch (error) {
     throw new Error(`An error occured while trying to download the binary from "${binaryUrl}". Details: ${error.message}`);
@@ -88,7 +118,13 @@ const fetchBinary = async ({
 const verifyBinaryChecksum = async (
   binaryAsBuffer: Buffer,
   binaryFileName: string,
-  { downloadUrl, extended, version }: Pick<InstallHugoOptions, 'downloadUrl' | 'extended' | 'version'>,
+  {
+    downloadUrl,
+    extended,
+    httpProxy,
+    httpsProxy,
+    version,
+  }: Pick<InstallHugoOptions, 'downloadUrl' | 'extended' | 'httpProxy' | 'httpsProxy' | 'version'>,
 ): Promise<void> => {
   // Find checksum file pattern
   const checksumFileNamePattern = hugoReleasesMeta.checksumFilePatternHistory
@@ -117,7 +153,7 @@ const verifyBinaryChecksum = async (
   // Download checksum
   let rawChecksums: string;
   try {
-    const checksumResponse = await got(checksumUrl);
+    const checksumResponse = await got(checksumUrl, createFetchOptions({ httpProxy, httpsProxy }));
     rawChecksums = checksumResponse.body;
   } catch (error) {
     throw new Error(`An error occured while trying to download the checksum. Details: ${error.message}`);
@@ -244,6 +280,8 @@ export async function installHugo({
   destination,
   extended,
   force,
+  httpProxy,
+  httpsProxy,
   os,
   skipChecksumCheck,
   skipHealthCheck,
@@ -268,9 +306,9 @@ export async function installHugo({
   // Cleanup and download binary
   if (!doesBinaryAlreadyExist) {
     await cleanupAndPrepareDestination({ destination });
-    const { binaryAsBuffer, binaryFileName } = await fetchBinary({ arch, downloadUrl, extended, os, version });
+    const { binaryAsBuffer, binaryFileName } = await fetchBinary({ arch, downloadUrl, extended, httpProxy, httpsProxy, os, version });
     if (!skipChecksumCheck) {
-      await verifyBinaryChecksum(binaryAsBuffer, binaryFileName, { downloadUrl, extended, version });
+      await verifyBinaryChecksum(binaryAsBuffer, binaryFileName, { downloadUrl, extended, httpProxy, httpsProxy, version });
     }
     await writeBinaryToDisk(binaryAsBuffer, { destination });
   }
