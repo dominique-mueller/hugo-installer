@@ -4,6 +4,14 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/hugo-installer
 
 <br>
 
+## [3.1.0](https://github.com/dominique-mueller/hugo-installer/releases/tag/3.1.0) (2021-07-23)
+
+### Features
+
+- Add ability to configure http and https proxy ([#38](https://github.com/dominique-mueller/hugo-installer/pull/38))
+
+<br>
+
 ## [3.0.1](https://github.com/dominique-mueller/hugo-installer/releases/tag/3.0.1) (2021-04-13)
 
 ### Bug Fixes
