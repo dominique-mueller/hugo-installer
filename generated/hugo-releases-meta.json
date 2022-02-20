@@ -77,6 +77,14 @@
       "arch": "x64",
       "fileNamePatternHistory": [
         {
+          "version": "0.89.1",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-64bit.tar.gz"
+        },
+        {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
+        {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_macOS-64bit.tar.gz"
         },
@@ -174,6 +182,22 @@
       "os": "darwin",
       "arch": "arm64",
       "fileNamePatternHistory": [
+        {
+          "version": "0.89.1",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-ARM64.tar.gz"
+        },
+        {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
+        {
+          "version": "0.88.1",
+          "fileNamePattern": "{{variant}}_{{version}}_macOS-ARM64.tar.gz"
+        },
+        {
+          "version": "0.88.0",
+          "fileNamePattern": null
+        },
         {
           "version": "0.81.0",
           "fileNamePattern": "{{variant}}_{{version}}_macOS-ARM64.tar.gz"
@@ -355,6 +379,10 @@
       "arch": "x86",
       "fileNamePatternHistory": [
         {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
+        {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-32bit.tar.gz"
         },
@@ -388,6 +416,10 @@
       "os": "freebsd",
       "arch": "arm",
       "fileNamePatternHistory": [
+        {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
         {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM.tar.gz"
@@ -426,6 +458,10 @@
       "os": "freebsd",
       "arch": "arm64",
       "fileNamePatternHistory": [
+        {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
         {
           "version": "0.81.0",
           "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM64.tar.gz"
@@ -479,6 +515,10 @@
       "arch": "x86",
       "fileNamePatternHistory": [
         {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
+        {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-32bit.tar.gz"
         },
@@ -517,6 +557,10 @@
       "arch": "arm",
       "fileNamePatternHistory": [
         {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
+        {
           "version": "0.48",
           "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-ARM.tar.gz"
         },
@@ -530,6 +574,10 @@
       "os": "freebsd",
       "arch": "arm64",
       "fileNamePatternHistory": [
+        {
+          "version": "0.89.0",
+          "fileNamePattern": null
+        },
         {
           "version": "0.81.0",
           "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-ARM64.tar.gz"
