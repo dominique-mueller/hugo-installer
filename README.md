@@ -145,7 +145,7 @@ For instance:
 exec-bin bin/hugo/hugo --config=hugo.config.json
 ```
 
-If you only case about Linux-based systems, you can run the executable as expected without any additional tooling. For instance:
+If you only care about Linux-based systems, you can run the executable as expected without any additional tooling. For instance:
 
 ```bash
 bin/hugo/hugo --config=hugo.config.json
