@@ -1,6 +1,6 @@
 {
   "arm": "(arm)(?!64)",
-  "arm64": "(arm64)",
-  "x64": "(64bit|amd64|x64)",
+  "arm64": "(arm64|universal)",
+  "x64": "(64bit|amd64|x64|universal)",
   "x86": "(32bit|386)"
 }
