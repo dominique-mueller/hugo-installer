@@ -4,6 +4,22 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/hugo-installer
 
 <br>
 
+## [4.0.0](https://github.com/dominique-mueller/hugo-installer/releases/tag/4.0.0) (2022-09-13)
+
+### Bug Fixes
+
+- Fix compatibility with newer Hugo binaries ([#46](https://github.com/dominique-mueller/hugo-installer/pull/46))
+
+### Documentation
+
+- Fix typo in README ([#45](https://github.com/dominique-mueller/hugo-installer/pull/45))
+
+### BREAKING CHANGES
+
+- NodeJS 14 (or higher) is now required
+
+<br>
+
 ## [3.1.0](https://github.com/dominique-mueller/hugo-installer/releases/tag/3.1.0) (2021-07-23)
 
 ### Features
