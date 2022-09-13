@@ -17,7 +17,7 @@ import { installHugo } from '../index.js';
 import { InstallHugoOptions } from '../src/install-hugo.interfaces.js';
 
 // Read CLI parameters
-const argv = yargs(hideBin(process.argv))
+const argv: InstallHugoOptions = yargs(hideBin(process.argv))
   .version(false) // Disable default version flag (we're using our own in the next line)
   .option('arch', {
     choices: ['arm', 'arm64', 'x64', 'x86'],
@@ -78,7 +78,7 @@ const argv = yargs(hideBin(process.argv))
     type: 'string',
     required: true,
   })
-  .strict().argv;
+  .strict().argv as InstallHugoOptions;
 
 /**
  * Bin

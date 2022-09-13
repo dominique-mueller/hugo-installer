@@ -4,13 +4,12 @@
     "tsconfigRootDir": ".",
     "project": ["./tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint", "prettier", "simple-import-sort"],
+  "plugins": ["@typescript-eslint", "simple-import-sort", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "prettier/@typescript-eslint",
+    "plugin:import/typescript",
     "plugin:prettier/recommended"
   ],
   "rules": {

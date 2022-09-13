@@ -21,12 +21,12 @@ export default [
         peerDeps: true,
         optDeps: true,
       }),
-      resolve(),
-      commonjs(),
       typescript(),
       json({
         preferConst: true,
       }),
+      resolve(),
+      commonjs(),
       bundleSize(),
     ],
     output: [
@@ -50,8 +50,6 @@ export default [
         peerDeps: true,
         optDeps: true,
       }),
-      resolve(),
-      commonjs(),
       typescript({
         tsconfigOverride: {
           compilerOptions: {
@@ -59,6 +57,11 @@ export default [
           },
         },
       }),
+      json({
+        preferConst: true,
+      }),
+      resolve(),
+      commonjs(),
       preserveShebangs(),
       bundleSize(),
     ],
