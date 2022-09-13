@@ -34,7 +34,7 @@
     "generate-hugo-releases-meta": "node --experimental-specifier-resolution=node --loader ts-node/esm ./tools/generate-hugo-releases-meta.ts",
     "lint": "eslint index.ts bin/** --max-warnings 0",
     "lint:fix": "eslint index.ts bin/** --max-warnings 0 --fix",
-    "test": "rimraf -r test-output && node dist/bin/hugo-installer --version 0.92.2 --destination test-output/hugo-0.92.2"
+    "test": "rimraf -r test-output && node dist/bin/hugo-installer --version 0.102.3 --destination test-output/hugo-0.102.3"
   },
   "dependencies": {
     "decompress": "4.2.x",
