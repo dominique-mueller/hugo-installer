@@ -1,7 +1,7 @@
 import { spawn } from 'child_process';
 import * as crypto from 'crypto';
 import decompress from 'decompress';
-import del from 'del';
+import { deleteAsync } from 'del';
 import * as fs from 'fs';
 import got, { OptionsOfTextResponseBody } from 'got';
 import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
@@ -43,7 +43,7 @@ const createFetchOptions = ({
  */
 const cleanupAndPrepareDestination = async ({ destination }: Pick<InstallHugoOptions, 'destination'>): Promise<void> => {
   // Delete destination folder with all its content
-  await del(path.join(destination, '**'));
+  await deleteAsync(path.join(destination, '**'));
 
   // Prepare destination directory (does nothing if it already exists)
   await fs.promises.mkdir(destination, { recursive: true });

@@ -3,9 +3,9 @@ import * as path from 'path';
 
 import got from 'got';
 
-import archFileNamePatterns from './file-name-patterns-arch.json';
-import osFileNamePatterns from './file-name-patterns-os.json';
-import combinationsOsArch from './combinations-os-arch.json';
+import archFileNamePatterns from './file-name-patterns-arch.json' assert { type: 'json' };
+import osFileNamePatterns from './file-name-patterns-os.json' assert { type: 'json' };
+import combinationsOsArch from './combinations-os-arch.json' assert { type: 'json' };
 
 /**
  * Fetch Hugo releases, paginated (max page size = 100)

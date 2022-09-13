@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "esModuleInterop": true,
-    "module": "ES2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist",
     "removeComments": true,
