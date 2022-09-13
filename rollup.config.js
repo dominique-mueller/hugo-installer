@@ -16,7 +16,6 @@ export default [
     plugins: [
       externals({
         builtins: true,
-        builtinsPrefix: 'strip',
         deps: true,
         devDeps: true,
         peerDeps: true,
@@ -46,7 +45,6 @@ export default [
     plugins: [
       externals({
         builtins: true,
-        builtinsPrefix: 'strip',
         deps: true,
         devDeps: true,
         peerDeps: true,
