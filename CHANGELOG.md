@@ -4,6 +4,14 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/hugo-installer
 
 <br>
 
+## [4.0.1](https://github.com/dominique-mueller/hugo-installer/releases/tag/4.0.1) (2022-09-27)
+
+### Bug Fixes
+
+- Fix compatibility with newer Hugo binaries (0.103.0) ([#51](https://github.com/dominique-mueller/hugo-installer/pull/51))
+
+<br>
+
 ## [4.0.0](https://github.com/dominique-mueller/hugo-installer/releases/tag/4.0.0) (2022-09-13)
 
 ### Bug Fixes
