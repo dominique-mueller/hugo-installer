@@ -54,7 +54,7 @@ The Hugo version can be set using the `--version` CLI parameter. For example:
 ```json
 {
   "scripts": {
-    "postinstall": "hugo-installer --version 0.102.3"
+    "postinstall": "hugo-installer --version 0.103.0"
   }
 }
 ```
@@ -67,7 +67,7 @@ You can also use the extended version of Hugo (for some operating systems!) by s
 ```json
 {
   "scripts": {
-    "postinstall": "hugo-installer --version 0.102.3 --extended"
+    "postinstall": "hugo-installer --version 0.103.0 --extended"
   }
 }
 ```
@@ -78,7 +78,7 @@ Hugo version to be configured someplace else, e.g. in a `otherDependencies` obje
 ```json
 {
   "otherDependencies": {
-    "hugo": "0.102.3"
+    "hugo": "0.103.0"
   },
   "scripts": {
     "postinstall": "hugo-installer --version otherDependencies.hugo"

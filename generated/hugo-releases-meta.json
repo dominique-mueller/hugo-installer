@@ -5,6 +5,10 @@
       "arch": "x64",
       "fileNamePatternHistory": [
         {
+          "version": "0.103.0",
+          "fileNamePattern": "{{variant}}_{{version}}_windows-amd64.zip"
+        },
+        {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_Windows-64bit.zip"
         },
@@ -80,6 +84,10 @@
       "os": "darwin",
       "arch": "x64",
       "fileNamePatternHistory": [
+        {
+          "version": "0.103.0",
+          "fileNamePattern": "{{variant}}_{{version}}_darwin-universal.tar.gz"
+        },
         {
           "version": "0.102.0",
           "fileNamePattern": "{{variant}}_{{version}}_macOS-universal.tar.gz"
@@ -191,6 +199,10 @@
       "arch": "arm64",
       "fileNamePatternHistory": [
         {
+          "version": "0.103.0",
+          "fileNamePattern": "{{variant}}_{{version}}_darwin-universal.tar.gz"
+        },
+        {
           "version": "0.102.0",
           "fileNamePattern": "{{variant}}_{{version}}_macOS-universal.tar.gz"
         },
@@ -297,6 +309,10 @@
       "arch": "arm",
       "fileNamePatternHistory": [
         {
+          "version": "0.103.0",
+          "fileNamePattern": "{{variant}}_{{version}}_linux-arm.tar.gz"
+        },
+        {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_Linux-ARM.tar.gz"
         },
@@ -335,6 +351,10 @@
       "arch": "arm64",
       "fileNamePatternHistory": [
         {
+          "version": "0.103.0",
+          "fileNamePattern": "{{variant}}_{{version}}_linux-arm64.tar.gz"
+        },
+        {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_Linux-ARM64.tar.gz"
         },
@@ -360,6 +380,10 @@
       "os": "freebsd",
       "arch": "x64",
       "fileNamePatternHistory": [
+        {
+          "version": "0.103.0",
+          "fileNamePattern": "{{variant}}_{{version}}_freebsd-amd64.tar.gz"
+        },
         {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_FreeBSD-64bit.tar.gz"
@@ -492,6 +516,10 @@
       "os": "openbsd",
       "arch": "x64",
       "fileNamePatternHistory": [
+        {
+          "version": "0.103.0",
+          "fileNamePattern": "{{variant}}_{{version}}_openbsd-amd64.tar.gz"
+        },
         {
           "version": "0.20.4",
           "fileNamePattern": "{{variant}}_{{version}}_OpenBSD-64bit.tar.gz"
