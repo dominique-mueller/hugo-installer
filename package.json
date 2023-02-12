@@ -39,7 +39,7 @@
   "dependencies": {
     "decompress": "4.2.x",
     "del": "7.0.x",
-    "got": "12.4.x",
+    "got": "12.5.x",
     "hpagent": "1.0.x",
     "object-path": "0.11.x",
     "semver": "7.3.x",
