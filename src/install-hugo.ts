@@ -102,7 +102,7 @@ const fetchBinary = async ({
     const binaryResponse = await got(binaryUrl, createFetchOptions({ httpProxy, httpsProxy }));
     binaryAsBuffer = binaryResponse.rawBody;
   } catch (error) {
-    throw new Error(`An error occured while trying to download the binary from "${binaryUrl}". Details: ${error.message}`);
+    throw new Error(`An error occurred while trying to download the binary from "${binaryUrl}". Details: ${error.message}`);
   }
 
   // Done
@@ -156,7 +156,7 @@ const verifyBinaryChecksum = async (
     const checksumResponse = await got(checksumUrl, createFetchOptions({ httpProxy, httpsProxy }));
     rawChecksums = checksumResponse.body;
   } catch (error) {
-    throw new Error(`An error occured while trying to download the checksum. Details: ${error.message}`);
+    throw new Error(`An error occurred while trying to download the checksum. Details: ${error.message}`);
   }
 
   // Find expected checksum
@@ -165,7 +165,7 @@ const verifyBinaryChecksum = async (
       return rawChecksumLine.endsWith(binaryFileName);
     }) || null;
   if (rawChecksumLine === null) {
-    throw new Error(`An error occured while trying to find the checksum for version "${version}" the checksum.`);
+    throw new Error(`An error occurred while trying to find the checksum for version "${version}" the checksum.`);
   }
   const expectedChecksum = rawChecksumLine.split(' ')[0];
 
@@ -213,7 +213,7 @@ const verifyBinaryHealth = async ({ destination }: Pick<InstallHugoOptions, 'des
       resolve(hugoVersionConsoleOutput);
     });
     childProcess.on('error', (error) => {
-      reject(`An error occured while verifiy the binary health. Details: ${error.message}`);
+      reject(`An error occurred while verifying the binary health. Details: ${error.message}`);
     });
   });
 };
